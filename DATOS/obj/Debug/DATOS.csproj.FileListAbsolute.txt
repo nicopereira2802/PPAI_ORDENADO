@@ -1,0 +1,9 @@
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\obj\Debug\DATOS.csproj.AssemblyReference.cache
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\obj\Debug\DATOS.csproj.CoreCompileInputs.cache
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\bin\Debug\DATOS.dll
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\bin\Debug\DATOS.pdb
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\bin\Debug\ENTIDADES.dll
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\bin\Debug\ENTIDADES.pdb
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\obj\Debug\DATOS.csproj.CopyComplete
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\obj\Debug\DATOS.dll
+C:\Users\nicolas\Documents\aplicacionesPRUEBAPPAI\TERCERINTENTO\DATOS\obj\Debug\DATOS.pdb

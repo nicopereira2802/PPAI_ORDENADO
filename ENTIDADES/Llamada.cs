@@ -15,7 +15,6 @@ namespace ENTIDADES
         public bool encuestaEnviada { get; set; }
         public Cliente cliente { get; set; }
         public List<RespuestaCliente> respuestaDeEncuesta { get; set; }
-        public List<CambioEstado> cambioEstado { get; set; }
 
     }
 }

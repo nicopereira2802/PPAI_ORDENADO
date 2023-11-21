@@ -10,7 +10,7 @@ namespace ENTIDADES
     {
         public int dni { get; set; }
         public string nombreCompleto { get; set; } 
-        public int nroCelular { get; set; }
+        public string nroCelular { get; set; }
 
     }
 }

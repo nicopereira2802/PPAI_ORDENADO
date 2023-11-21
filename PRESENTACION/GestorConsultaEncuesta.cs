@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PRESENTACION
 {
-    internal class GestorConsultaEncuesta
+    public class GestorConsultaEncuesta
     {
     }
 }

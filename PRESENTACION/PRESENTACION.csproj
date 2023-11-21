@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsultaEncuesta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaEncuesta.Designer.cs">
+      <DependentUpon>ConsultaEncuesta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Iniciar_Sesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,8 +67,14 @@
     <Compile Include="GestorConsultaEncuesta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConsultaEncuesta.resx">
+      <DependentUpon>ConsultaEncuesta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Iniciar_Sesion.resx">
       <DependentUpon>Iniciar_Sesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

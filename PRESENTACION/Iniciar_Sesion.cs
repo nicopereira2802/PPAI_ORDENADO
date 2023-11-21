@@ -24,11 +24,11 @@ namespace PRESENTACION
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Usuario> ListaEstados = new CN_Usuario().Listar();
+            List<Estado> ListaEstados = new CN_Estado().Listar();
             mostrarEstados(ListaEstados);
         }
 
-        public void mostrarEstados(List<Usuario> ListaEstados)
+        public void mostrarEstados(List<Estado> ListaEstados)
         {
             dataGridView1.DataSource = ListaEstados;
         }
@@ -41,12 +41,21 @@ namespace PRESENTACION
         private void button2_Click(object sender, EventArgs e)
         {
             List<Usuario> ListaUsuarios = new CN_Usuario().Listar();
+            bool lec = false;
             foreach (Usuario usu in ListaUsuarios)
             {
                 if (usu.nomusu == txtUsuario.Text && usu.clave == txtContrasena.Text)
                 {
-                    MessageBox.Show("¡Hola, mundo!", "Mensaje Informati", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("¡Bienvenido, Usuario valido!", "Mensaje Informativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MenuPrincipal ventana = new MenuPrincipal(usu);
+                    lec = true;
+                    ventana.Show();
+                    this.Hide();
                 }
+            }
+            if(lec == false)
+            {
+                MessageBox.Show("¡ERROR,Usuario no valido!", "Mensaje Informativo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

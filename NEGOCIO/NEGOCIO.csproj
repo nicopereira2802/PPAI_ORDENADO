@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CN_CambioEstado.cs" />
     <Compile Include="CN_Cliente.cs" />
+    <Compile Include="CN_Encuesta.cs" />
     <Compile Include="CN_Estado.cs" />
     <Compile Include="CN_Llamada.cs" />
     <Compile Include="CN_Usuario.cs" />

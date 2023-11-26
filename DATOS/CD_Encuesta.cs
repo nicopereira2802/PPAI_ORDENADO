@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Data;
 using System.Data.SqlClient;
 using ENTIDADES;
 
 namespace DATOS
 {
-    public class CD_Cliente
+    public class CD_Encuesta
     {
-        public List<Cliente> Listar()
+        public List<Encuesta> Listar()
         {
-            List<Cliente> lista = new List<Cliente>();
+            List<Encuesta> lista = new List<Encuesta>();
             using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
-                    string query = "select Dni,NroCelular,NombreCompleto from Cliente";
+                    string query = "SELECT e.Descripcion FROM Encuesta e";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
@@ -28,21 +29,20 @@ namespace DATOS
                     {
                         while (reader.Read())
                         {
-                            lista.Add(new Cliente()
+                            lista.Add(new Encuesta()
                             {
-                                dni = int.Parse(reader["Dni"].ToString()),
-                                nroCelular = reader["NroCelular"].ToString(),
-                                nombreCompleto = reader["NombreCompleto"].ToString()
+                                descripcion = reader["Descripcion"].ToString()
                             });
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    lista = new List<Cliente>();
+                    lista = new List<Encuesta>();
                 }
             }
             return lista;
         }
+            
     }
 }

@@ -19,9 +19,15 @@ namespace DATOS
             {
                 try
                 {
-                    string query = "select DescripcionOperador,DetalleEncuesta,Duracion from Llamada";
+                    StringBuilder query = new StringBuilder();
 
-                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    query.AppendLine("SELECT l.Id, l.DescripcionOperador, l.DetalleEncuesta, l.Duracion, l.EncuestaEnviada, l.DniCliente,");
+                    query.AppendLine("c.Id AS CambioEstadoId, c.FechaHoraInicio");
+                    query.AppendLine("FROM Llamada l");
+                    query.AppendLine("INNER JOIN CambioEstado c ON l.Id = c.IdLlamada");
+                    query.AppendLine("INNER JOIN Cliente cli ON cli.Dni = l.DniCliente");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
                     cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
@@ -29,18 +35,33 @@ namespace DATOS
                     {
                         while (reader.Read())
                         {
-                           // Cliente clienteA = new Cliente(); // Aquí debes inicializar un objeto Cliente
-                           // clienteA.dni = reader.GetInt32(reader.GetOrdinal("Duracion")); // Ajusta esto según la propiedad en tu clase Cliente
-                             lista.Add(new Llamada()
+                            int llamadaId = Convert.ToInt32(reader["Id"]);
+                            Llamada llamada = lista.Find(e => e.Idll == llamadaId);
+
+                            if (llamada == null)
                             {
+                                llamada = new Llamada
+                                {
+                                    Idll = llamadaId,
+                                    descripcionOperador = reader["DescripcionOperador"].ToString(),
+                                    detalleEncuesta = reader["DetalleEncuesta"].ToString(),
+                                    duracion = int.Parse(reader["Duracion"].ToString()),
+                                    encuestaEnviada = bool.Parse(reader["EncuestaEnviada"].ToString()),
+                                    cliente = new Cliente { dni = reader["DniCliente"] != DBNull.Value ? int.Parse(reader["DniCliente"].ToString()) : 0 },
+                                    cambiosEstados = new List<CambioEstado>()
+                                };
 
-                                descripcionOperador = reader["DescripcionOperador"].ToString(),
-                                detalleEncuesta = reader["DetalleEncuesta"].ToString(),
-                                duracion = reader.GetInt32(reader.GetOrdinal("Duracion")),
-                                //encuestaEnviada = reader.GetBoolean(reader.GetOrdinal("EncuestaEnviada")),
-                                //cliente = clienteA
+                                lista.Add(llamada);
+                            }
 
-                            });
+                            if (reader["CambioEstadoId"] != DBNull.Value)
+                            {
+                                llamada.cambiosEstados.Add(new CambioEstado
+                                {
+                                    IdCam = Convert.ToInt32(reader["CambioEstadoId"]),
+                                    fechaHoraInicio = Convert.ToDateTime(reader["FechaHoraInicio"])
+                                });
+                            }
                         }
                     }
                 }

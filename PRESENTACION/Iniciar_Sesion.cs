@@ -18,20 +18,44 @@ namespace PRESENTACION
         public Iniciar_Sesion()
         {
             InitializeComponent();
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
 
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Estado> ListaEstados = new CN_Estado().Listar();
+            List<Llamada> ListaEstados = new CN_Llamada().Listar();
             mostrarEstados(ListaEstados);
         }
 
-        public void mostrarEstados(List<Estado> ListaEstados)
+        public void mostrarEstados(List<Llamada> ListaEstados)
         {
             dataGridView1.DataSource = ListaEstados;
+            dataGridView1.Columns["descripcionOperador"].HeaderText = "Descripción del Operador";
+            dataGridView1.Columns["detalleEncuesta"].HeaderText = "Detalle de la Encuesta";
+            dataGridView1.Columns["duracion"].HeaderText = "Duración";
+            dataGridView1.Columns["encuestaEnviada"].HeaderText = "Encuesta Enviada";
+            dataGridView1.Columns["cliente"].HeaderText = "Cliente";
+
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Verifica si la celda que se está formateando es la que te interesa
+            if (e.ColumnIndex == dataGridView1.Columns["cliente"].Index && e.RowIndex >= 0)
+            {
+     
+                Cliente cliente = (Cliente)e.Value;
+
+                int dni = cliente.dni;
+
+                e.Value = dni.ToString();
+
+                e.FormattingApplied = true;
+            }
+        }
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

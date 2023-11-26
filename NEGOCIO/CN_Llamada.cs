@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using ENTIDADES;
 using DATOS;
 
@@ -15,6 +16,39 @@ namespace NEGOCIO
         public List<Llamada> Listar()
         {
             return objcd_llamada.Listar();
+        }
+
+        public bool determinarEstadoInicial(DateTime fechainicio, DateTime fechafin,Llamada llamada)
+        {
+           
+            foreach (CambioEstado cambioEstado in llamada.cambiosEstados)
+            {
+                bool var1 = cambioEstado.GetNombreEstado();
+                if (var1 == true)
+                {
+                    DateTime var2 = cambioEstado.getFechaHoraInicio();
+                    if (var2 >= fechainicio && var2 <= fechafin)
+                    {
+                        bool var3 = tieneEncuestaEnviada();
+                        if (var3 == true)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+           
+            return false;
+        }
+
+        public bool esDePeriodo(DateTime fechainicio, DateTime fechafin,Llamada llamada)
+        {
+            bool var4 = this.determinarEstadoInicial(fechainicio, fechafin, llamada);
+            if (var4 == true)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

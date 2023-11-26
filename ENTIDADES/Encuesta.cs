@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace ENTIDADES
 {
     public class Encuesta
+
     {
+        public int id { get; set; }
         public string descripcion { get; set; }
         public List<Pregunta> pregunta { get; set; }
 

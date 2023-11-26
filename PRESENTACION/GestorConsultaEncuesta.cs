@@ -26,7 +26,7 @@ namespace PRESENTACION
 				}
 
 			}
-			return llamadasDelGestor;
+			return llamadasConEncuesta;
 		}
 
 

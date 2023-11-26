@@ -20,16 +20,18 @@ namespace NEGOCIO
 
         public bool determinarEstadoInicial(DateTime fechainicio, DateTime fechafin,Llamada llamada)
         {
+            
            
             foreach (CambioEstado cambioEstado in llamada.cambiosEstados)
             {
-                bool var1 = cambioEstado.GetNombreEstado();
+                bool var1 = new CN_CambioEstado().GetNombreEstado(cambioEstado);
+         
                 if (var1 == true)
                 {
-                    DateTime var2 = cambioEstado.getFechaHoraInicio();
+                    DateTime var2 = cambioEstado.fechaHoraInicio;
                     if (var2 >= fechainicio && var2 <= fechafin)
                     {
-                        bool var3 = tieneEncuestaEnviada();
+                        bool var3 = llamada.encuestaEnviada;
                         if (var3 == true)
                         {
                             return true;

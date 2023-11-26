@@ -16,5 +16,14 @@ namespace NEGOCIO
         {
             return objcd_cambioestado.Listar();
         }
+
+        public bool GetNombreEstado(CambioEstado cambioEstado)
+        {
+            if (cambioEstado.estado.nombre == "Finalizada")
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -22,11 +22,11 @@ namespace DATOS
                     StringBuilder query = new StringBuilder();
 
                     query.AppendLine("SELECT l.Id, l.DescripcionOperador, l.DetalleEncuesta, l.Duracion, l.EncuestaEnviada, l.DniCliente,");
-                    query.AppendLine("c.Id AS CambioEstadoId, c.FechaHoraInicio,e.Id AS EstadoId,e.Nombre AS EstadoNombre");
+                    query.AppendLine("c.Id AS CambioEstadoId, c.FechaHoraInicio");
                     query.AppendLine("FROM Llamada l");
                     query.AppendLine("INNER JOIN CambioEstado c ON l.Id = c.IdLlamada");
                     query.AppendLine("INNER JOIN Cliente cli ON cli.Dni = l.DniCliente");
-                    query.AppendLine("INNER JOIN Estado e ON e.Id = c.IdEstado");
+
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
                     cmd.CommandType = CommandType.Text;
@@ -60,12 +60,7 @@ namespace DATOS
                                 CambioEstado cambioEstado = new CambioEstado
                                 {
                                     IdCam = Convert.ToInt32(reader["CambioEstadoId"]),
-                                    fechaHoraInicio = Convert.ToDateTime(reader["FechaHoraInicio"]),
-                                    estado = new Estado
-                                    {
-                                        IdEst = Convert.ToInt32(reader["EstadoId"]),
-                                        nombre = reader["EstadoNombre"].ToString()
-                                    }
+                                    //fechaHoraInicio = Convert.ToDateTime(reader["FechaHoraInicio"])
                                 };
 
                                 llamada.cambiosEstados.Add(cambioEstado);

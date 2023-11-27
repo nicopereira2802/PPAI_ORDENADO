@@ -32,6 +32,7 @@ namespace PRESENTACION
             List<Llamada> llamadasEPantalla = gestor.validarPeriodo(fechaInicio, fechaFin);
             //List<Llamada> llamadasEPantalla = new CN_Llamada().Listar();
             mostrarLlamadas(llamadasEPantalla);
+            dataGridLlamadas.SelectionChanged += dataGridLlamadas_SelectionChanged;
 
         }
 
@@ -46,7 +47,7 @@ namespace PRESENTACION
             dataGridLlamadas.Columns["encuestaEnviada"].HeaderText = "Encuesta Enviada";
             dataGridLlamadas.Columns["cliente"].HeaderText = "Cliente";
             dataGridLlamadas.ClearSelection();
-            dataGridLlamadas.SelectionChanged += dataGridLlamadas_SelectionChanged;
+            
         }
 
         private void dataGridLlamadas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -82,9 +83,11 @@ namespace PRESENTACION
                 // Realizar cualquier otra acción que necesites con el objeto seleccionado
                 // ...
                 // Ejemplo de mostrar una propiedad del objeto en un MessageBox
-                MessageBox.Show($"Se ha seleccionado el objeto: Propiedad1={llamadaSeleccionado.descripcionOperador}");
+                MessageBox.Show($"Se ha seleccionado la Llamada :={llamadaSeleccionado.Idll} con operador");
                 //List<string> listaLlamadaDatos = gestorConsultarEncuesta.tomarSeleccionLlamada(llamadaSeleccionado);
                 //mostrarDatosLLamada(listaLlamadaDatos);
+
+                List<string> listaLlamadaDatos = gestor.tomarSeleccionLlamada(llamadaSeleccionado);
             }
         }
     }

@@ -374,7 +374,21 @@ VALUES('2023-08-21',15,6);
 
 
 -- INSERTAR DATOS DE LA RESPUESTA CLIENTE
+INSERT INTO Usuario
+(NomUser,Clave)
+VALUES('nicolas','12345'); 
 
+INSERT INTO Usuario
+(NomUser,Clave)
+VALUES('Ulises','67890'); 
+
+INSERT INTO Usuario
+(NomUser,Clave)
+VALUES('Matias','abcde'); 
+
+INSERT INTO Usuario
+(NomUser,Clave)
+VALUES('Daiana','fghij'); 
 
 
 

@@ -16,5 +16,10 @@ namespace NEGOCIO
         {
             return objcd_estado.Listar();
         }
+
+        public void esFinalizada(String condicion)
+        {
+            Listar();
+        }
     }
 }

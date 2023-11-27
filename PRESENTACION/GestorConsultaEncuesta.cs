@@ -22,7 +22,9 @@ namespace PRESENTACION
 				bool var5 =  new CN_Llamada().esDePeriodo(fechainicio, fechafin,llamada);
 				if (var5 == true)
 				{
+					
 					llamadasConEncuesta.Add(llamada);
+					
 				}
 
 			}
@@ -49,6 +51,16 @@ namespace PRESENTACION
 
 			}
 		}
-		
+
+		public List<string> tomarSeleccionLlamada(Llamada llamadaSeleccionada)
+		{
+			List<string> listaTotal2 = new List<string>();
+			
+			//listaTotal2 = buscarDatosLlamada(llamadaSeleccionada);
+			return listaTotal2;
+
+		}
+
+
 	}
 }

@@ -12,18 +12,15 @@ namespace NEGOCIO
     {
         private CD_CambioEstado objcd_cambioestado = new CD_CambioEstado();
 
-        public List<CambioEstado> Listar()
+        public List<CambioEstado> Listar(int idLlamada)
         {
-            return objcd_cambioestado.Listar();
+            return objcd_cambioestado.Listar(idLlamada);
         }
 
-        public bool GetNombreEstado(CambioEstado cambioEstado)
+        public DateTime GetFechaCambio(CambioEstado cambioEstado)
         {
-            if (cambioEstado.estado.nombre == "Finalizada")
-            {
-                return true;
-            }
-            return false;
+            return cambioEstado.fechaHoraInicio;
+            
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using ENTIDADES;
+using System.Net;
 
 namespace DATOS
 {
@@ -44,5 +45,41 @@ namespace DATOS
             }
             return lista;
         }
+
+        public Cliente obtenerClienteLlamada(int dni)
+        {
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = "SELECT Dni, NroCelular, NombreCompleto FROM Cliente WHERE Dni = @Dni";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@Dni", dni);
+
+                    oconexion.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Cliente()
+                            {
+                                dni = int.Parse(reader["Dni"].ToString()),
+                                nroCelular = reader["NroCelular"].ToString(),
+                                nombreCompleto = reader["NombreCompleto"].ToString()
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de errores...
+                }
+            }
+            return null; // Cliente no encontrado
+        }
+
+
     }
+
 }

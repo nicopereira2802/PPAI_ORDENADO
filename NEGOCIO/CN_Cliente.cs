@@ -16,5 +16,18 @@ namespace NEGOCIO
         {
             return objcd_cliente.Listar();
         }
+
+        public Cliente obtenerCliente(Llamada llamada)
+        {
+            if (llamada.cliente != null)
+            {
+                return objcd_cliente.obtenerClienteLlamada(llamada.cliente.dni);
+            }          
+            else
+            {
+              
+                return null;
+            }
+        }
     }
 }

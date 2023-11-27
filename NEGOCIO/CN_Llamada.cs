@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using ENTIDADES;
 using DATOS;
-
+using System.Windows.Forms;
 
 namespace NEGOCIO
 {
@@ -106,7 +106,21 @@ namespace NEGOCIO
 
         public List<String> getDatos(Llamada llamada)
         {
-             List<String> listaDeDatos = new List<String>();
+            List<String> listaDeDatos = new List<String>();
+
+            Cliente clientedeLlamada = new CN_Cliente().obtenerCliente(llamada);
+
+            string cliente = clientedeLlamada.nombreCompleto;
+
+            CambioEstado ultimoCambio = determinarUltimoEstado(llamada);
+            Estado estadoActual = new CN_CambioEstado().obtenerEstado(ultimoCambio.IdCam);
+
+
+            //Cliente cliente = cn_Cliente.obtenerCliente(llamada);
+            //DateTime var1 = new CN_CambioEstado().GetFechaCambio(cambioEstado);
+
+            //string clientedeLlamada = cliente.nombreCompleto;
+
             /*
             string clienteDeLlamada = this.cliente.getNombreCliente();
             bool estadoFinalLlamada = this.determinarUltimoEstado(llamada);
@@ -120,6 +134,11 @@ namespace NEGOCIO
             listaDeDatos.Add(estadoStringLlamada);
             listaDeDatos.Add(Convert.ToString(duracionLlamada));
             */
+            listaDeDatos.Add(cliente);
+            listaDeDatos.Add(estadoActual.nombre);
+            string mensaje = string.Join(Environment.NewLine, listaDeDatos);
+            MessageBox.Show(mensaje, "Mensaje Informativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             return listaDeDatos;
 
         }

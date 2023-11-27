@@ -12,7 +12,7 @@ namespace DATOS
 {
     public class CD_CambioEstado
     {
-        
+
         public List<CambioEstado> Listar(int idLlamada)
         {
             List<CambioEstado> lista = new List<CambioEstado>();
@@ -44,8 +44,8 @@ namespace DATOS
                             {
                                 IdCam = int.Parse(reader["Id"].ToString()),
                                 fechaHoraInicio = DateTime.Parse(reader["FechaHoraInicio"].ToString()),
-                            
-                                estado = new Estado() {  nombre = reader["Id"].ToString() }
+
+                                estado = new Estado() { nombre = reader["Id"].ToString() }
 
                             });
                         }
@@ -100,7 +100,38 @@ namespace DATOS
 
             return cambioEstado;
         }*/
-    }
 
+        public Estado getEstado(int cambioEstado)
+        {
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = "SELECT IdEst, nombre FROM Estado WHERE IdEst = @IdEst";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@IdEst", cambioEstado);
+
+                    oconexion.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Estado()
+                            {
+                                IdEst = int.Parse(reader["IdEst"].ToString()),
+                                nombre = reader["Nombre"].ToString()
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de errores...
+                }
+            }
+            return null; // Estado no encontrad
+        }
+    }
     
 }

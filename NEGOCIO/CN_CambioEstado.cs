@@ -22,5 +22,9 @@ namespace NEGOCIO
             return cambioEstado.fechaHoraInicio;
             
         }
+        public Estado obtenerEstado(int idCambio)
+        {
+            return objcd_cambioestado.getEstado(idCambio);
+        }
     }
 }

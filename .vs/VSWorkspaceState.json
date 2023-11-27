@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\ENTIDADES",
+    "\\NEGOCIO",
     "\\PRESENTACION"
   ],
-  "SelectedNode": "\\ENTIDADES\\Estado.cs",
+  "SelectedNode": "\\PRESENTACION\\PRESENTACION.sln",
   "PreviewInSolutionExplorer": false
 }

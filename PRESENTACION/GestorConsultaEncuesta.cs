@@ -22,11 +22,11 @@ namespace PRESENTACION
 				bool var5 =  new CN_Llamada().esDePeriodo(fechainicio, fechafin,llamada);
 				if (var5 == true)
 				{
-					
-					llamadasConEncuesta.Add(llamada);
-					
+					if (llamada.encuestaEnviada == true)
+					{
+						llamadasConEncuesta.Add(llamada);
+					}
 				}
-
 			}
 			return llamadasConEncuesta;
 		}
@@ -52,12 +52,30 @@ namespace PRESENTACION
 			}
 		}
 
+		public List<string> buscarDatosLlamada(Llamada llamadaSeleccionada)
+		{
+			List<string> listaTotal = new List<String>();
+			List<string> lista1 = new List<String>();
+			List<string> lista2 = new List<String>();
+
+			lista1 = new CN_Llamada().getDatos(llamadaSeleccionada);
+			/*
+			lista1 = llamadaSeleccionada.getDatos(llamadaSeleccionada);
+			lista2 = llamadaSeleccionada.getRespuestas(llamadaSeleccionada);
+			listaTotal = lista1.Concat(lista2).ToList();
+			this.ListaPreguntas = lista2;
+			this.ListaEncabezado = lista1;
+			this.ListaFinalDeDatos = listaTotal;
+			*/
+
+			return listaTotal;
+		}
 		public List<string> tomarSeleccionLlamada(Llamada llamadaSeleccionada)
 		{
 			List<string> listaTotal2 = new List<string>();
-			
-			//listaTotal2 = buscarDatosLlamada(llamadaSeleccionada);
+			listaTotal2 = buscarDatosLlamada(llamadaSeleccionada);
 			return listaTotal2;
+			//listaTotal2 = buscarDatosLlamada(llamadaSeleccionada);
 
 		}
 

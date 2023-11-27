@@ -19,7 +19,7 @@ namespace NEGOCIO
             return objcd_llamada.Listar();
         }
 
-        public CambioEstado determinarUltimoEstado(DateTime fechainicio, DateTime fechafin,Llamada llamada)
+        public CambioEstado determinarUltimoEstado(Llamada llamada)
         {
             List<CambioEstado> cambios = new List<CambioEstado>();
             cambios = new CN_CambioEstado().Listar(llamada.Idll);
@@ -58,23 +58,70 @@ namespace NEGOCIO
                 
             }
           
-            return false;
+            return ultimo;
         }
 
-        private object CN_CambioEstado()
+        public DateTime ObtenerFecha(List<CambioEstado> cambios)
         {
-            throw new NotImplementedException();
-        }
+            DateTime primerFecha = new DateTime();
+            bool Bandera = false;
+            foreach (CambioEstado i in cambios)
+            {
+                if (Bandera == false)
+                {
+                    primerFecha = i.fechaHoraInicio;
+                    Bandera = true;
+                }
+                else
+                {
+                    if (primerFecha > i.fechaHoraInicio)
+                    {
+                        primerFecha = i.fechaHoraInicio;
+                    }
+                }
+            }
+            return primerFecha;
 
+        }
+       
         public bool esDePeriodo(DateTime fechainicio, DateTime fechafin,Llamada llamada)
         {
-            
-            bool var4 = determinarUltimoEstado(fechainicio, fechafin, llamada);
-            if (var4 == true)
+            List<CambioEstado> cambios = new List<CambioEstado>();
+            cambios = new CN_CambioEstado().Listar(llamada.Idll);
+            DateTime fechaPrimero = ObtenerFecha(cambios);
+            if (fechaPrimero >= fechainicio && fechaPrimero <= fechafin)
             {
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
+         
+        
+            //CambioEstado ultimoCambio = determinarUltimoEstado(llamada);
+
+          
+        }
+
+        public List<String> getDatos(Llamada llamada)
+        {
+             List<String> listaDeDatos = new List<String>();
+            /*
+            string clienteDeLlamada = this.cliente.getNombreCliente();
+            bool estadoFinalLlamada = this.determinarUltimoEstado(llamada);
+            string estadoStringLlamada = "Finalizada";
+            if (estadoFinalLlamada == false)
+            {
+                estadoStringLlamada = "Inicializada sin Finalizar";
+            }
+            int duracionLlamada = this.getDuracion();
+            listaDeDatos.Add(clienteDeLlamada);
+            listaDeDatos.Add(estadoStringLlamada);
+            listaDeDatos.Add(Convert.ToString(duracionLlamada));
+            */
+            return listaDeDatos;
+
         }
     }
 }

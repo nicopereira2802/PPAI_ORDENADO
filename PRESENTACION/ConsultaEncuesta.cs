@@ -83,7 +83,8 @@ namespace PRESENTACION
                 // Realizar cualquier otra acción que necesites con el objeto seleccionado
                 // ...
                 // Ejemplo de mostrar una propiedad del objeto en un MessageBox
-                MessageBox.Show($"Se ha seleccionado la Llamada :={llamadaSeleccionado.Idll} con operador");
+                MessageBox.Show("Se ha seleccionado la Llamada{llamadaSeleccionado.Idll} con operador {llamadaSeleccionado.descripcionOperador}", "Mensaje Informativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
                 //List<string> listaLlamadaDatos = gestorConsultarEncuesta.tomarSeleccionLlamada(llamadaSeleccionado);
                 //mostrarDatosLLamada(listaLlamadaDatos);
 

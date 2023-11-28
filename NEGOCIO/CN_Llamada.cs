@@ -113,8 +113,10 @@ namespace NEGOCIO
             string cliente = clientedeLlamada.nombreCompleto;
 
             CambioEstado ultimoCambio = determinarUltimoEstado(llamada);
-            Estado estadoActual = new CN_CambioEstado().obtenerEstado(ultimoCambio.IdCam);
+            Estado estadoActual = new CN_CambioEstado().obtenerEstado(ultimoCambio);
+            string nombreEstadoActual = estadoActual.nombre;
 
+            int duracionLlamada = llamada.duracion;
 
             //Cliente cliente = cn_Cliente.obtenerCliente(llamada);
             //DateTime var1 = new CN_CambioEstado().GetFechaCambio(cambioEstado);
@@ -135,7 +137,8 @@ namespace NEGOCIO
             listaDeDatos.Add(Convert.ToString(duracionLlamada));
             */
             listaDeDatos.Add(cliente);
-            listaDeDatos.Add(estadoActual.nombre);
+            listaDeDatos.Add(nombreEstadoActual);
+            listaDeDatos.Add(duracionLlamada.ToString());
             string mensaje = string.Join(Environment.NewLine, listaDeDatos);
             MessageBox.Show(mensaje, "Mensaje Informativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

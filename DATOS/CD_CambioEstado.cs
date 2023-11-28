@@ -57,7 +57,47 @@ namespace DATOS
                 }
             }
             return lista;
+        } 
+
+
+
+        public Estado buscarEstado(int id)
+        {
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = "SELECT e.Id, e.Nombre " +
+                                   "FROM CambioEstado c " +
+                                   "INNER JOIN Estado e ON c.IdEstado = e.Id " +
+                                   "WHERE c.Id = @IdCam";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@IdCam", id);
+
+                    oconexion.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Estado()
+                            {
+                                IdEst = int.Parse(reader["IdEst"].ToString()),
+                                nombre = reader["Nombre"].ToString()
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de errores...
+                }
+            }
+            return null; // Estado no encontrado   
         }
+
+
+        
         /*
         public CambioEstado ObtenerPorId(int idCambioEstado)
         {
@@ -101,6 +141,7 @@ namespace DATOS
             return cambioEstado;
         }*/
 
+        /*
         public Estado getEstado(int cambioEstado)
         {
             using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
@@ -132,6 +173,7 @@ namespace DATOS
             }
             return null; // Estado no encontrad
         }
+    }*/
+
     }
-    
 }
